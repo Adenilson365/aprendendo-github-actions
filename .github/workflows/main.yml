@@ -17,6 +17,7 @@ jobs:
   segundo-job:
     name: "Job com Action de NodeJS"
     runs-on: ubuntu-latest
+    needs: [primeiro-job]
     steps:
       - name: "Verificação versão NodeJS antes da action"
         run: node --version
