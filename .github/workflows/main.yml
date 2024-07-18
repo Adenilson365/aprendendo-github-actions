@@ -21,7 +21,7 @@ jobs:
       - name: "Verificação versão NodeJS antes da action"
         run: node --version
       - name: "Definindo Versão NodeJS - 20.15.1"
-      - uses: actions/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20.15.1'
       - name: "Verificação versão NodeJS depois da Action"
