@@ -1,31 +1,22 @@
-name: primeira-pipeline
+name: trigger pr
 on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+    pull_request:
+        branches: ["main"]
 jobs:
-  primeiro-job:
-    name: "Meu primeiro Job"
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Minha primeira Action"
-        run: echo "Hello World"
-      - name: "Segunda Action"
-        run: |
-          echo "Primeiro Comando"
-          echo "Segundo Comando"
-  segundo-job:
-    name: "Job com Action de NodeJS"
-    runs-on: ubuntu-latest
-    needs: [primeiro-job]
-    steps:
-      - name: "Verificação versão NodeJS antes da action"
-        run: node --version
-      - name: "Definindo Versão NodeJS - 20.15.1"
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.15.1'
-      - name: "Verificação versão NodeJS depois da Action"
-        run: node --version
-    
-          
+    teste_pr:
+        permissions: write-all
+        runs-on: ubuntu-latest
+        steps:
+          - name: Action Teste
+            run: echo "Action executada apenas em PR"
+          - name: Alteração no card
+            uses: actions/github-script@v7
+            id: set-result
+            with:
+                script: |
+                  github.rest.issues.createComment({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    body: 'Comentário adicionado no PR via Actions'
+                  })

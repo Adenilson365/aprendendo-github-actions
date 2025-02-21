@@ -1,0 +1,11 @@
+name: apply main
+on:
+  push:
+    branches: [main]
+
+jobs:
+  aplicou_main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aplicou na mai
+        run: echo "Aplicou na main"
