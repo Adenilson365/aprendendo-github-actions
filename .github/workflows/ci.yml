@@ -4,7 +4,7 @@ on:
 jobs:
     CI:
         runs-on: ubuntu-latest
-        environment: dev
+        environment: prd
         steps:
             - name: DeployFake
               run: echo "Deploy no ambiente ${{ vars.ENV }}"
