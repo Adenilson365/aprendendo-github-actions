@@ -14,6 +14,6 @@ jobs:
     CD:
       needs: [CI]
       uses: Adenilson365/aprendendo-github-actions/.github/workflows/cd.yml@main
-      with:
-        ambiente: producao
+      secrets:
+        ambiente: ${{ secrets.AMBIENTE_ENTREGA }}
 
