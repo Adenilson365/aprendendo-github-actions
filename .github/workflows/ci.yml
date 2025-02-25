@@ -7,6 +7,10 @@ jobs:
         environment: prd
         steps:
             - name: DeployFake
-              run: echo "Deploy no ambiente ${{ vars.ENV }}"
+              run: |
+                echo "Deploy no ambiente ${{ vars.ENV }}"
+                ls
+                pwd
+
 
 
