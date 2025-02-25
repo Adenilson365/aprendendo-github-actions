@@ -9,7 +9,9 @@ jobs:
             - name: DeployFake
               run: |
                 echo "Deploy no ambiente ${{ vars.ENV }}"
-                ls
+                echo "LS"
+                ls -la
+                echo "pwd"
                 pwd
 
 
