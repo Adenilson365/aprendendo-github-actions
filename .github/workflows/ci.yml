@@ -6,6 +6,8 @@ jobs:
         runs-on: ubuntu-latest
         environment: prd
         steps:
+            - name: Checkout do código
+              uses: actions/checkout@v4
             - name: DeployFake
               run: |
                 echo "Deploy no ambiente ${{ vars.ENV }}"
