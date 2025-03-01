@@ -20,7 +20,7 @@ jobs:
                       try {
                         const output = execSync(command, { encoding: 'utf-8' }).trim();
                         return output
-                          ? output.split("\n").map(line => `<p>${line}</p>`).join("<br>")
+                          ? output.split("\n").map(line => `<p>${line}</p>`)
                           : "<p>Nenhum recurso será criado</p>";
                       } catch {
                         return "<p>Nenhum recurso será criado</p>";
