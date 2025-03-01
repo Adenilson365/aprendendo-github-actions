@@ -38,13 +38,13 @@ jobs:
                     ${planDetails}\n
                     "====================================================================================================";
                     Recursos a serem destruídos\n
-                    ${destroyResources}\n
+                    <p>${destroyResources}</p><br>
                     "====================================================================================================";
                     Recursos a serem modificados\n
-                    ${modifyResources}\n
+                    <p>${modifyResources}</p>br
                     "====================================================================================================";
                     Recursos a serem criados\n
-                    ${createResources}`;
+                    <p>${createResources}</p><br>`;
 
                     github.rest.issues.createComment({
                       issue_number: context.issue.number,
