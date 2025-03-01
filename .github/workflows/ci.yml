@@ -22,19 +22,30 @@ jobs:
                     issue_number: context.issue.number,
                     owner: context.repo.owner,
                     repo: context.repo.repo,
-                    body: '👋 Thanks for reporting!
-                    echo "Resumo do plano"
-                    cat plan.txt | grep "Plan:" || exit 0 "
-                    echo "===================================================================================================="
-                    echo "Recursos a serem destruídos"  
-                    cat plan.txt | grep "will be destroyed" || echo "Nenhum recurso será destruído"
-                    echo "===================================================================================================="
-                    echo "Recursos a serem modificados"
-                    cat plan.txt | grep "will be changed" || echo "Nenhum recurso será alterado"
-                    echo "===================================================================================================="
-                    echo "Recursos a serem criados"
-                    cat plan.txt | grep "will be created" || echo "Nenhum recurso será criado" '
-                  })
+                    body: `👋 Thanks for reporting!
+
+                    **Resumo do plano:**
+                    \`\`\`
+                    $(cat plan.txt | grep "Plan:" || echo "Nenhum plano encontrado")
+                    \`\`\`
+                    
+                    ---
+                    
+                    **Recursos a serem destruídos:**
+                    \`\`\`
+                    $(cat plan.txt | grep "will be destroyed" || echo "Nenhum recurso será destruído")
+                    \`\`\`
+                    
+                    **Recursos a serem modificados:**
+                    \`\`\`
+                    $(cat plan.txt | grep "will be changed" || echo "Nenhum recurso será alterado")
+                    \`\`\`
+                    
+                    **Recursos a serem criados:**
+                    \`\`\`
+                    $(cat plan.txt | grep "will be created" || echo "Nenhum recurso será criado")
+                    \`\`\``
+                  });
           
 
 
