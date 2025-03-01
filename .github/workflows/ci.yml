@@ -36,12 +36,13 @@ jobs:
                     const commentBody = `👋 Thanks for reporting!\n
                     Resumo do Plano:
                     ${planDetails}\n
-
+                    "====================================================================================================";
                     Recursos a serem destruídos\n
                     ${destroyResources}\n
-
+                    "====================================================================================================";
                     Recursos a serem modificados\n
                     ${modifyResources}\n
+                    "====================================================================================================";
                     Recursos a serem criados\n
                     ${createResources}`;
 
