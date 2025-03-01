@@ -16,17 +16,15 @@ jobs:
                   script: |
                     const { execSync } = require('child_process');
 
-                    function runCommand(command) {
-                      try {
-                        const output = execSync(command, { encoding: 'utf-8' }).trim();
-                        return output
-                          ? output.split("\n").map(line => `<p>${line}</p>`)
-                          : "<p>Nenhum recurso será criado</p>";
-                      } catch {
-                        return "<p>Nenhum recurso será criado</p>";
-                      }
-                    }
-
+                      function runCommand(command) {
+                        try {
+                          const output = execSync(command, { encoding: 'utf-8' }).trim();
+                          return output
+                            ? output.split("\n").map(line => `<p>${line.split(" will")[0]}</p>`)
+                            : "<p>Nenhum recurso será criado</p>";
+                        } catch {
+                          return "<p>Nenhum recurso será criado</p>";
+                        }
 
                     const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Nenhuma informação encontrada";
                     
@@ -40,10 +38,10 @@ jobs:
                     <span style="color: red;">${planDetails}</span><br>
                     "=====================================================================================";
                     <h1>Recursos a serem destruídos</h1><br>
-                    <p>${destroyResources}</p><br>
+                    ${destroyResources}
                     "=====================================================================================";
                     <h1>Recursos a serem modificados</h1><br>
-                    <p>${modifyResources}</p><br>
+                    ${modifyResources}
                     "=====================================================================================";
                     <h1>Recursos a serem criados</h1><br>
                     ${createResources}`;
