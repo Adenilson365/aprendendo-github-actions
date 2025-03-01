@@ -38,13 +38,13 @@ jobs:
                     <h1>Resumo do Plano:</h1><br>
                     <span style="color: red;">${planDetails}</span><br>
                     "=====================================================================================";
-                    <h1>Recursos a serem destruídos</h1><br>
+                    :alert:<h1>Recursos a serem destruídos</h1><br>
                     ${destroyResources}
                     "=====================================================================================";
-                    <h1>Recursos a serem modificados</h1><br>
+                    :warning:<h1>Recursos a serem modificados</h1><br>
                     ${modifyResources}
                     "=====================================================================================";
-                    <h1>Recursos a serem criados</h1><br>
+                    :ok:<h1>Recursos a serem criados</h1><br>
                     ${createResources}`;
 
                     github.rest.issues.createComment({
