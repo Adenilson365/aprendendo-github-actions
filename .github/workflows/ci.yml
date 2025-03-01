@@ -31,19 +31,18 @@ jobs:
                     const modifyResources = runCommand('cat plan.txt | grep "will be changed"') || "Nenhum recurso será alterado";
                     const createResources = runCommand('cat plan.txt | grep "will be created"') || "Nenhum recurso será criado";
 
-                    const separator = "====================================================================================================";
 
                     const commentBody = `👋 Thanks for reporting!\n
-                    Resumo do Plano:
-                    ${planDetails}\n
-                    "====================================================================================================";
-                    Recursos a serem destruídos\n
+                    <h1>Resumo do Plano:</h1><br>
+                    <span style="color: red;">${planDetails}</span><br>
+                    "=====================================================================================";
+                    <h1>Recursos a serem destruídos</h1><br>
                     <p>${destroyResources}</p><br>
-                    "====================================================================================================";
-                    Recursos a serem modificados\n
-                    <p>${modifyResources}</p>br
-                    "====================================================================================================";
-                    Recursos a serem criados\n
+                    "=====================================================================================";
+                    <h1>Recursos a serem modificados</h1><br>
+                    <p>${modifyResources}</p><br>
+                    "=====================================================================================";
+                    <h1>Recursos a serem criados</h1><br>
                     <p>${createResources}</p><br>`;
 
                     github.rest.issues.createComment({
