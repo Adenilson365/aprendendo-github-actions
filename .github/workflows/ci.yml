@@ -34,9 +34,8 @@ jobs:
                     const createResources = runCommand('cat plan.txt | grep "will be created"') || "Nenhum recurso será criado";
 
 
-                    const commentBody = `👋 Thanks for reporting!\n
-                    <h1>Resumo do Plano:</h1><br>
-                    <span style="color: red;">${planDetails}</span><br>
+                    const commentBody = `Resumo:\n
+                    <h1>{planDetails}<h1><br>
                     "=====================================================================================";
                     <h1> 🚫 Recursos a serem destruídos</h1><br>
                     ${destroyResources}
