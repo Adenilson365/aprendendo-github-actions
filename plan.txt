@@ -880,7 +880,7 @@ Terraform will perform the following actions:
       + type                     = "ingress"
     }
 
-  # module.sg_rules-ingress-sg3[1].aws_security_group_rule.rule will be created
+  # module.sg_rules-ingress-sg3[1].aws_security_group_rule.rule will be destroyed
   + resource "aws_security_group_rule" "rule" {
       + from_port                = 5432
       + id                       = (known after apply)
@@ -922,7 +922,7 @@ Terraform will perform the following actions:
       + type                     = "ingress"
     }
 
-  # module.vpc.aws_vpc.vpc will be created
+  # module.vpc.aws_vpc.vpc will be changed
   + resource "aws_vpc" "vpc" {
       + arn                                  = (known after apply)
       + cidr_block                           = "10.0.0.0/22"
