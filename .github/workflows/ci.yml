@@ -10,10 +10,6 @@ jobs:
         steps:
             - name: Checkout do código
               uses: actions/checkout@v4
-            - name: criar arquivo
-              run: |
-                echo "# module.eks.aws_iam_role.node_iam will be created" >> plan.txt
-                echo "# module.eks.aws_iam_role.node_iam will be created" >> plan.txt
             - name: Comentar PR
               uses: actions/github-script@v7
               with:
