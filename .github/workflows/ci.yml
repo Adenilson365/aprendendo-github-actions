@@ -18,9 +18,12 @@ jobs:
 
                     function runCommand(command) {
                       try {
-                        return execSync(command, { encoding: 'utf-8' }).trim();
+                        const output = execSync(command, { encoding: 'utf-8' }).trim();
+                        return output
+                          ? output.split("\n").map(line => `<p>${line}</p>`).join("<br>")
+                          : "<p>Nenhum recurso será criado</p>";
                       } catch {
-                        return '';
+                        return "<p>Nenhum recurso será criado</p>";
                       }
                     }
 
@@ -43,7 +46,7 @@ jobs:
                     <p>${modifyResources}</p><br>
                     "=====================================================================================";
                     <h1>Recursos a serem criados</h1><br>
-                    <p>${createResources}</p><br>`;
+                    ${createResources}`;
 
                     github.rest.issues.createComment({
                       issue_number: context.issue.number,
