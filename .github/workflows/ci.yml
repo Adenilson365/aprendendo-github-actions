@@ -21,9 +21,9 @@ jobs:
                         const output = execSync(command, { encoding: 'utf-8' }).trim();
                         return output
                           ? output.split("\n").map(line => `<p>${line.split("will be")[0]}</p>`)
-                          : "<p>Nenhum recurso será criado</p>";
+                          : "<p>Nenhum recurso será afetado</p>";
                       } catch {
-                        return "<p>Nenhum recurso será criado</p>";
+                        return "<p>Nenhum recurso será afetado</p>";
                       }
                     }
 
@@ -36,8 +36,9 @@ jobs:
 
                     const commentBody = `Resumo:\n
                     <h1>${planDetails}</h1><br>
+                    <p1>Detalhes do plano no artefato disponível para download</p1>
                     "=====================================================================================";
-                    <h1>Esse feature afeta banco de dados: </h1>
+                    <h1>🛑🛑[CUIDADO]-Essa feature afeta banco de dados: 🛑🛑</h1>
                     ${rds}
                     "=====================================================================================";
                     <h1> 🚫 Recursos a serem destruídos</h1><br>
