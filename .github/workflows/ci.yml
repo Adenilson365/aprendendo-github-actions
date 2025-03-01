@@ -35,7 +35,7 @@ jobs:
 
 
                     const commentBody = `Resumo:\n
-                    <h1>{planDetails}<h1><br>
+                    <h1>${planDetails}<h1><br>
                     "=====================================================================================";
                     <h1> 🚫 Recursos a serem destruídos</h1><br>
                     ${destroyResources}
