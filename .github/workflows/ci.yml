@@ -1,6 +1,6 @@
 name: CI/CD Fake
 on: 
-    pull_request:  
+  pull_request:
 jobs:
     CI:
         runs-on: ubuntu-latest
@@ -14,23 +14,19 @@ jobs:
               uses: actions/github-script@v7
               with:
                   script: |
+                    const { execSync } = require('child_process');
+
                     function runCommand(command) {
                       try {
                         const output = execSync(command, { encoding: 'utf-8' }).trim();
-                        if (output) {
-                          const lines = output.split("\n");
-                          let tableContent = lines.map(line => {
-                            const text = line.split("will be")[0];
-                            return `<tr><td>${text}</td></tr>`;
-                          }).join('');
-                          return `<table><tr><th>Recurso</th></tr>${tableContent}</table>`;
-                        } else {
-                          return "<p>Nenhum recurso será criado</p>";
-                        }
+                        return output
+                          ? output.split("\n").map(line => `<p>${line.split("will be")[0]}</p>`)
+                          : "<p>Nenhum recurso será criado</p>";
                       } catch {
                         return "<p>Nenhum recurso será criado</p>";
                       }
                     }
+
                     const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Nenhuma informação encontrada";
                     
                     const destroyResources = runCommand('cat plan.txt | grep "will be destroyed"') || "Nenhum recurso será destruído";
