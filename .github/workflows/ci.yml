@@ -20,7 +20,7 @@ jobs:
                       try {
                         const output = execSync(command, { encoding: 'utf-8' }).trim();
                         return output
-                          ? output.split("\n").map(line => `<p>${line.split(" will")[0]}</p>`)
+                          ? output.split("\n").map(line => `<p>${line.split("will be")[0]}</p>`)
                           : "<p>Nenhum recurso será criado</p>";
                       } catch {
                         return "<p>Nenhum recurso será criado</p>";
@@ -38,13 +38,13 @@ jobs:
                     <h1>Resumo do Plano:</h1><br>
                     <span style="color: red;">${planDetails}</span><br>
                     "=====================================================================================";
-                    :alert:<h1>Recursos a serem destruídos</h1><br>
+                    🚫<h1>Recursos a serem destruídos</h1><br>
                     ${destroyResources}
                     "=====================================================================================";
-                    :warning:<h1>Recursos a serem modificados</h1><br>
+                    ⚠️<h1>Recursos a serem modificados</h1><br>
                     ${modifyResources}
                     "=====================================================================================";
-                    :ok:<h1>Recursos a serem criados</h1><br>
+                    ✅<h1>Recursos a serem criados</h1><br>
                     ${createResources}`;
 
                     github.rest.issues.createComment({
