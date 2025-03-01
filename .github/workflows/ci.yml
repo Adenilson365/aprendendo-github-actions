@@ -27,15 +27,18 @@ jobs:
                       }
                     }
 
-                    const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Nenhuma informação encontrada";
-                    
+                    const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Não afeta";
+                    const rds = runCommand('cat plan.txt | grep "module.rds"')
                     const destroyResources = runCommand('cat plan.txt | grep "will be destroyed"') || "Nenhum recurso será destruído";
                     const modifyResources = runCommand('cat plan.txt | grep "will be changed"') || "Nenhum recurso será alterado";
                     const createResources = runCommand('cat plan.txt | grep "will be created"') || "Nenhum recurso será criado";
 
 
                     const commentBody = `Resumo:\n
-                    <h1>${planDetails}<h1><br>
+                    <h1>${planDetails}</h1><br>
+                    "=====================================================================================";
+                    <h1>Esse feature afeta banco de dados: </h1>
+                    ${rds}
                     "=====================================================================================";
                     <h1> 🚫 Recursos a serem destruídos</h1><br>
                     ${destroyResources}
