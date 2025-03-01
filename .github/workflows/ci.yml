@@ -15,40 +15,39 @@ jobs:
               with:
                   script: |
                     const { execSync } = require('child_process');
-              
+
                     function runCommand(command) {
                       try {
                         return execSync(command, { encoding: 'utf-8' }).trim();
                       } catch {
-                        return 'Nenhum dado encontrado';
+                        return '';
                       }
                     }
-              
-                    const planResumo = "Resumo do plano";
-                    const planDetails = runCommand('cat plan.txt | grep "Plan:"');
-              
+
+
+                    const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Nenhuma informação encontrada";
+                    
                     const destroyResources = runCommand('cat plan.txt | grep "will be destroyed"') || "Nenhum recurso será destruído";
                     const modifyResources = runCommand('cat plan.txt | grep "will be changed"') || "Nenhum recurso será alterado";
                     const createResources = runCommand('cat plan.txt | grep "will be created"') || "Nenhum recurso será criado";
-              
-                    const commentBody = `👋 Thanks for reporting!\n\n
-                    **${planResumo}**\n
-                    \`\`\`
-                    ${planDetails}
-                    \`\`\`\n
-                    | Tipo de Recurso   | Detalhes |
-                    |------------------|----------|
-                    | **Destruição**    | \`\`\`${destroyResources}\`\`\` |
-                    | **Modificação**   | \`\`\`${modifyResources}\`\`\` |
-                    | **Criação**       | \`\`\`${createResources}\`\`\` |
-              
-                    `;
-              
+
+                    const separator = "====================================================================================================";
+
+                    const commentBody = `👋 Thanks for reporting!\n
+                    Resumo do Plano:
+                    ${planDetails}\n
+
+                    Recursos a serem destruídos\n
+                    ${destroyResources}\n
+
+                    Recursos a serem modificados\n
+                    ${modifyResources}\n
+                    Recursos a serem criados\n
+                    ${createResources}`;
+
                     github.rest.issues.createComment({
                       issue_number: context.issue.number,
                       owner: context.repo.owner,
                       repo: context.repo.repo,
                       body: commentBody
                     });
-             
-              
