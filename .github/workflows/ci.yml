@@ -1,58 +1,10 @@
 name: CI/CD Fake
 on: 
-  pull_request:
+  push:
 jobs:
     CI:
         runs-on: ubuntu-latest
-        permissions:
-          pull-requests: write
-          issues: write
         steps:
-            - name: Checkout do código
-              uses: actions/checkout@v4
-            - name: Comentar PR
-              uses: actions/github-script@v7
-              with:
-                  script: |
-                    const { execSync } = require('child_process');
-
-                    function runCommand(command) {
-                      try {
-                        const output = execSync(command, { encoding: 'utf-8' }).trim();
-                        return output
-                          ? output.split("\n").map(line => `<p>${line.split("will be")[0]}</p>`)
-                          : "<p>Nenhum recurso será afetado</p>";
-                      } catch {
-                        return "<p>Nenhum recurso será afetado</p>";
-                      }
-                    }
-
-                    const planDetails = runCommand('cat plan.txt | grep "Plan:"') || "Não afeta";
-                    const rds = runCommand('cat plan.txt | grep "module.rds"')
-                    const destroyResources = runCommand('cat plan.txt | grep "will be destroyed"') || "Nenhum recurso será destruído";
-                    const modifyResources = runCommand('cat plan.txt | grep "will be changed"') || "Nenhum recurso será alterado";
-                    const createResources = runCommand('cat plan.txt | grep "will be created"') || "Nenhum recurso será criado";
-
-
-                    const commentBody = `Resumo:\n
-                    <h1>${planDetails}</h1><br>
-                    <p1>Detalhes do plano no artefato disponível para download</p1>
-                    "=====================================================================================";
-                    <h1>🛑🛑[CUIDADO]-Essa feature afeta banco de dados: 🛑🛑</h1>
-                    ${rds}
-                    "=====================================================================================";
-                    <h1> 🚫 Recursos a serem destruídos</h1><br>
-                    ${destroyResources}
-                    "=====================================================================================";
-                    <h1> ⚠️ Recursos a serem modificados</h1><br>
-                    ${modifyResources}
-                    "=====================================================================================";
-                    <h1> ✅ Recursos a serem criados</h1><br>
-                    ${createResources}`;
-
-                    github.rest.issues.createComment({
-                      issue_number: context.issue.number,
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      body: commentBody
-                    });
+          - name: teste
+            run: |
+              echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
