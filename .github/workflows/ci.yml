@@ -1,12 +1,13 @@
 name: CI/CD Fake
-on: 
-  push:
+
+on:  
+  workflow_call:
+
 jobs:
-    CI:
-        runs-on: ubuntu-latest
-        steps:
-          - name: teste
-            run: |
-              # echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
-              # echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
-              echo "${{ github.ref_name == 'main' && 'prod' || github.ref_name == 'dev' && 'dev' || 'feat' }}"
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug branch name
+        run: | 
+          echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
+
