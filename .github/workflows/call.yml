@@ -6,3 +6,11 @@ jobs:
     tf_plan:
         uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
         secrets: inherit
+
+    tf_call:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Debug branch name- Call
+          run: | 
+            echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
+            echo "${{github.action}}"
