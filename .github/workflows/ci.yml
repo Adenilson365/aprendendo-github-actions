@@ -8,9 +8,14 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug branch name
-        run: | 
-         echo "${{ github.event_name == 'pull_request' && env.ambiente = github.base_ref || env.ambiente = github.ref_name }}"
+      - name: Define ambiente
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "ambiente=${{ github.base_ref }}" >> $GITHUB_ENV
+          else
+            echo "ambiente=${{ github.ref_name }}" >> $GITHUB_ENV
+          fi
 
-         echo "${{env.ambiente}}"
-
+      - name: Debug
+        run: |
+          echo "Ambiente: ${{ env.ambiente }}"
