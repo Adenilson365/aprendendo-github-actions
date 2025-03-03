@@ -14,4 +14,6 @@ jobs:
           echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
           echo "Teste"
           echo "${{github.base_ref}}"
+          echo "Secret"
+          echo "${{secrets.ENV}}"
 
