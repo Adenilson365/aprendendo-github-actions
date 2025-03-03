@@ -1,0 +1,7 @@
+name: call
+on:
+  push:
+jobs:
+    tf_plan:
+        uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
+        secrets: inherit
