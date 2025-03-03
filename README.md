@@ -3,7 +3,3 @@
 - Teste pr
 
 
-- teste conflito
-
-- teste 2
-
