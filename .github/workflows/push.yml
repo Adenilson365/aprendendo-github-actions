@@ -11,3 +11,5 @@ jobs:
             echo "${{ github.base_ref == 'main' && 'prod' || (github.base_ref == 'dev' && 'dev' || 'feat') }}"
             echo "Basename: ${{ github.base_ref }}"
             echo "refname: ${{ github.ref_name }}"
+
+            echo "eventName: ${{ github.event_name }}"
