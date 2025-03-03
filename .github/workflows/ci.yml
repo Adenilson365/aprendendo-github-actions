@@ -2,9 +2,10 @@ name: CI/CD Fake
 
 on:  
   workflow_call:
-    secrets:
+    inputs:
       ENV:
         required: true
+        type: string
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -15,5 +16,5 @@ jobs:
           echo "Teste"
           echo "${{github.base_ref}}"
           echo "Secret"
-          echo "${{secrets.ENV}}"
+          echo "${{inputs.ENV}}"
 
