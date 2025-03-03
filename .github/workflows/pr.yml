@@ -1,0 +1,11 @@
+name: call
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+    tf_plan:
+        uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
+        secrets: inherit
+        with:
+          env: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+
