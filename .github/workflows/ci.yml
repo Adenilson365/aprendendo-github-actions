@@ -2,15 +2,15 @@ name: CI/CD Fake
 
 on:  
   workflow_call: 
+env:
+  ambiente: prod
 jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
       - name: Debug branch name
         run: | 
-          echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
-          echo "Teste"
-          echo "${{github.base_ref}}"
-          echo "envo"
-          echo "$ambiente"
+         echo "${{ github.event_name == 'pull_request' && env.ambiente = github.base_ref || env.ambiente = github.ref_name }}"
+
+         echo "${{env.ambiente}}"
 
