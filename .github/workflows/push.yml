@@ -4,17 +4,6 @@ on:
 
 jobs:
 
-  tf_push:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Define ambiente
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "ambiente=${{ github.base_ref }}" >> $GITHUB_ENV
-          else
-            echo "ambiente=${{ github.ref_name }}" >> $GITHUB_ENV
-          fi
-
   tf_plan:
     uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
     secrets: inherit

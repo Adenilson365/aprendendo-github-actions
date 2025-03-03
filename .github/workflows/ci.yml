@@ -7,8 +7,24 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug
+      - name: Define ambiente
         run: |
-          echo "Ambiente: ${{ env.ambiente }}"
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "ambiente=${{ github.base_ref }}" >> $GITHUB_ENV
+          else
+            echo "ambiente=${{ github.ref_name }}" >> $GITHUB_ENV
+          fi
+  plan:
+    name: Terraform plan ${{ github.env.ambiente == 'main' && 'prod' || github.env.ambiente  == 'dev' && 'dev' || 'feat' }}
+    environment: ${{ github.env.ambiente  == 'main' && 'prod' || github.env.ambiente  == 'dev' && 'dev' || 'feat' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: teste
+        run: |
+          echo "${{ github.env.ambiente }}"
+          echo: "Base: ${{github.base_ref}}"
+          echo: "Base: ${{github.ref_name}}"
 
-          
+
+
+        
