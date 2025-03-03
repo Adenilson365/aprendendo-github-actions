@@ -2,14 +2,15 @@ name: push
 on:
   push:
 jobs:
+    tf_plan:
+      uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
+      secrets: inherit
+      with:
+        ENV: "teste"
 
     tf_push:
       runs-on: ubuntu-latest
       steps:
         - name: Debug de push
           run: | 
-            echo "${{ github.base_ref == 'main' && 'prod' || (github.base_ref == 'dev' && 'dev' || 'feat') }}"
-            echo "Basename: ${{ github.base_ref }}"
-            echo "refname: ${{ github.ref_name }}"
-
-            echo "eventName: ${{ github.event_name }}"
+            

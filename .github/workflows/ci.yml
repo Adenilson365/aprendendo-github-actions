@@ -2,7 +2,9 @@ name: CI/CD Fake
 
 on:  
   workflow_call:
-
+    secrets:
+      ENV:
+        required: true
 jobs:
   CI:
     runs-on: ubuntu-latest
