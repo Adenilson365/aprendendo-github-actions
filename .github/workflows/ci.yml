@@ -2,28 +2,20 @@ name: chamada
 
 on:  
   workflow_call: 
-
+    inputs: 
+      env:
+        required: true
+        type: string
 jobs:
-  CI:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Define ambiente
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "ambiente=${{ github.base_ref }}" >> $GITHUB_ENV
-          else
-            echo "ambiente=${{ github.ref_name }}" >> $GITHUB_ENV
-          fi
   plan:
-    name: Terraform plan ${{ github.env.ambiente == 'main' && 'prod' || github.env.ambiente  == 'dev' && 'dev' || 'feat' }}
-    environment: ${{ github.env.ambiente  == 'main' && 'prod' || github.env.ambiente  == 'dev' && 'dev' || 'feat' }}
+    name: Terraform plan ${{ inputs.env == 'main' && 'prod' || inputs.env == 'dev' && 'dev' || 'feat' }}
+    environment: ${{ inputs.env == 'main' && 'prod' || inputs.env == 'dev' && 'dev' || 'feat' }}
     runs-on: ubuntu-latest
     steps:
       - name: teste
         run: |
-          echo "${{ github.env.ambiente }}"
-          echo "base_ref: ${{github.base_ref}}"
-          echo "res_name: ${{github.ref_name}}"
+          echo "${{ inputs.env }}"
+
 
 
 
