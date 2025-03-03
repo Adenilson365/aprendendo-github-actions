@@ -22,8 +22,8 @@ jobs:
       - name: teste
         run: |
           echo "${{ github.env.ambiente }}"
-          echo: "Base: ${{github.base_ref}}"
-          echo: "Base: ${{github.ref_name}}"
+          echo "base_ref: ${{github.base_ref}}"
+          echo "res_name: ${{github.ref_name}}"
 
 
 
