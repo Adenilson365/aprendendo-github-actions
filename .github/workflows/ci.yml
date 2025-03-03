@@ -7,4 +7,6 @@ jobs:
         steps:
           - name: teste
             run: |
-              echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
+              # echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
+              # echo "${{ github.ref_name == 'main' && 'prod' || (github.ref_name == 'dev' && 'dev' || 'feat') }}"
+              echo "${{ github.ref_name == 'main' && 'prod' || github.ref_name == 'dev' && 'dev' || 'feat' }}"
