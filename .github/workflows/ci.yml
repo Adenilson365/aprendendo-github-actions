@@ -2,6 +2,8 @@ name: CI/CD Fake
 
 on:  
   workflow_call:
+env:
+  ambiente: 
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -12,5 +14,5 @@ jobs:
           echo "Teste"
           echo "${{github.base_ref}}"
           echo "envo"
-          echo "${{env.ambiente}}"
+          echo "$ambiente"
 
