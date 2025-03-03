@@ -1,9 +1,7 @@
 name: CI/CD Fake
 
 on:  
-  workflow_call:
-env:
-  ambiente: 
+  workflow_call: 
 jobs:
   CI:
     runs-on: ubuntu-latest
