@@ -24,7 +24,8 @@ jobs:
 
       - name: Atualizar tag 
         run: |
-          pwd
+          pwd 
+          cat ./application/deployments/deployment.yaml
           ls -a 
           sed -i 's|image: adenilsonkon/devopslabs-api-images:.*|image: adenilsonkon/devopslabs-api-images:15456465|' ./application/deployments/deployment.yaml
         env:
