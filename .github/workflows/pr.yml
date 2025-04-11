@@ -1,11 +1,43 @@
-name: call
-on:
-  pull_request:
-  workflow_dispatch:
-jobs:
-    tf_plan:
-        uses: Adenilson365/aprendendo-github-actions/.github/workflows/ci.yml@main
-        secrets: inherit
-        with:
-          env: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+# Análisa o código com SonarCloud
+# Faz o Build da imagem
+# Analisa a imagem com Trivy
+# Faz push para o DockerHub
+name: Ci 
 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar_repo
+        uses: actions/checkout@v3
+        with:
+          repository: https://github.dev/Adenilson365/estudosgit
+          token: ${{ secrets.ACCESS_TOKEN_GIT}}
+          path:  . 
+
+      - name: Atualizar tag 
+        run: |
+          cd api/api
+          pwd
+          ls -a 
+          sed -i 's|image: adenilsonkon/devopslabs-api-images:.*|image: adenilsonkon/devopslabs-api-images:15456465|' ./application/deployments/deployment.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
+      - name: Commit e Push
+        run: |
+          cd api/api
+          pwd
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add values.yaml
+          git commit -m "Update docker tag para:  132132"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
