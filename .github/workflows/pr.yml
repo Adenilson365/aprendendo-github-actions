@@ -21,6 +21,9 @@ jobs:
           repository: Adenilson365/estudosgit
           token: ${{ secrets.ACCESS_TOKEN_GIT}}
           path:  . 
+      
+      - name: Github
+        run: echo "${{ github }}"
 
       - name: Atualizar tag 
         run: |
@@ -41,3 +44,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
+
