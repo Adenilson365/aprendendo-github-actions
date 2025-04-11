@@ -27,9 +27,10 @@ jobs:
           pwd 
           cat ./application/deployments/deployment.yaml
           ls -a 
-          sed -i 's|image: adenilsonkon/devopslabs-api-images:.*|image: adenilsonkon/devopslabs-api-images:15456465|' ./application/deployments/deployment.yaml
+          sed -i 's|image: adenilsonkon/devopslabs-api-images:.*|image: adenilsonkon/devopslabs-api-images:aaaaa|' ./application/deployments/deployment.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
+
       - name: Commit e Push
         run: |
           pwd
