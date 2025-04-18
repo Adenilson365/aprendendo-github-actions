@@ -19,6 +19,8 @@ jobs:
       #   run: echo '${{ toJson(github) }}'
       - name: split
         run: |
-            echo " ${${{ github.sha }}:0:7}"
+            sha=${{ github.sha }}
+            final=(echo "${sha:0:7}")
+            echo $final
               
 
