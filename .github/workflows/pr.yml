@@ -25,7 +25,7 @@ jobs:
       - name: teste
         run: |
              echo "SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
-             echo "$GITHUB_ENV"
+             echo "$SHA"
         
       - name: print
-        run: echo "$GITHUB_ENV"
+        run: echo "$SHA"
