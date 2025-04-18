@@ -17,4 +17,8 @@ jobs:
     steps:
       - name: Mostrar contexto do GitHub
         run: echo '${{ toJson(github) }}'
+      - name: split
+        run: |
+            echo " ${{ github.sha }}:0:7"
+              
 
