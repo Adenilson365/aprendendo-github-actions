@@ -15,36 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar_repo
-        uses: actions/checkout@v3
-        with:
-          repository: Adenilson365/estudosgit
-          token: ${{ secrets.ACCESS_TOKEN_GIT}}
-          path:  . 
-      
-      - name: Github
-        run: echo "${{ github }}"
-
-      - name: Atualizar tag 
-        run: |
-          pwd 
-          cat ./application/deployments/deployment.yaml
-          ls -a 
-          sed -i 's|image: adenilsonkon/devopslabs-api-images:.*|image: adenilsonkon/devopslabs-api-images:aaaaa|' ./application/deployments/deployment.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
-
-      - name: Commit e Push
-        run: |
-          pwd
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Update docker tag para:  132132"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_GIT}}
-
       - name: Mostrar contexto do GitHub
         run: echo '${{ toJson(github) }}'
 
