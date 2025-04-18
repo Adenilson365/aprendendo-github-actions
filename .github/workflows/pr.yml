@@ -17,10 +17,15 @@ jobs:
     steps:
       # - name: Mostrar contexto do GitHub
       #   run: echo '${{ toJson(github) }}'
-      - name: split
+      # - name: split
+      #   run: |
+      #       sha="${GITHUB_SHA}"
+      #       final="${sha:0:7}"
+      #       echo "$final"
+      - name: teste
         run: |
-            sha="${GITHUB_SHA}"
-            final="${sha:0:7}"
-            echo "$final"
+             echo "SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+             echo "$GITHUB_ENV"
         
-
+      - name: print
+        run: echo "$GITHUB_ENV"
